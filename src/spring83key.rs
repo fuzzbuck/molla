@@ -1,10 +1,8 @@
 use chrono::{DateTime, Duration, Local, Utc};
-use ed25519_compact::{KeyPair, PublicKey, SecretKey, Signature};
+use ed25519_compact::{PublicKey, SecretKey, Signature};
 use hex::FromHexError;
 use once_cell::sync::Lazy;
 use regex::Regex;
-use std::default;
-use std::path::Component::Prefix;
 
 // The macro in the spec didn't work and I don't know regex.. so just gonna use 83e for now.
 pub(crate) static KEY_VALIDATOR: Lazy<Regex> = Lazy::new(|| Regex::new(r"83e").unwrap());

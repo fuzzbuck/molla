@@ -7,42 +7,29 @@ mod log;
 mod spring83key;
 
 use actix_cors::Cors;
-use chrono;
-use handlebars;
-use std::fs::{metadata, File};
-use std::io::Read;
-use std::str::FromStr;
-use std::thread::sleep;
-use std::time::SystemTime;
 
 use crate::board::Board;
 use crate::config::CONFIG;
 use crate::denylist::Denylist;
-use actix_web::body::{BodySize, BodyStream};
-use actix_web::error::HttpError;
-use actix_web::http::header::{HeaderName, HeaderValue, DATE};
+
+use actix_web::http::header::HeaderValue;
 use actix_web::http::{Method, StatusCode};
-use actix_web::middleware::Logger;
-use actix_web::web::{Bytes, Header};
+
+use actix_web::web::Bytes;
 use actix_web::{
-    delete, get, http, options, put, web, App, HttpRequest, HttpResponse, HttpResponseBuilder,
-    HttpServer, Responder,
+    get, http, options, put, web, App, HttpRequest, HttpResponse, HttpResponseBuilder, HttpServer,
+    Responder,
 };
-use ammonia::UrlRelative::Deny;
-use chrono::{Date, DateTime, Duration, FixedOffset, Local, NaiveDate, Utc};
-use ed25519_compact;
-use ed25519_compact::{KeyPair, Seed, Signature};
-use handlebars::{Handlebars, Template};
+
+use chrono::{DateTime, Duration, FixedOffset, Local, NaiveDate, Utc};
+
+use handlebars::Handlebars;
 use http::header;
 use once_cell::sync::Lazy;
-use regex::Regex;
-use scraper;
-use scraper::html::Select;
-use scraper::node::Element;
 use scraper::{ElementRef, Html, Selector};
 use serde_json::json;
-use sled::{Db, Tree};
-use spring83key::{Spring83Key, KEY_VALIDATOR};
+use spring83key::Spring83Key;
+use tokio::time::sleep;
 
 static TIME_SELECTOR: Lazy<Selector> = Lazy::new(|| Selector::parse("time").unwrap());
 
