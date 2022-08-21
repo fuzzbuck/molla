@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+    <style>
+        html { color-scheme: light dark; }
+        body { width: 35em; margin: 0 auto;
+            font-family: Tahoma, Verdana, Arial, sans-serif; }
+    </style>
+</head>
+<body>
+<h1>{{ header }}</h1>
+<p>{{ description }}</p>
+
+<h2>Administrators</h2>
+<ul>
+    {{#each people}}
+    <li>{{this}}</li>
+    {{/each}}
+</ul>
+
+<h2>Contact</h2>
+<a href="{{contact_href}}">{{contact}}</a>
+
+<p><em>molla server - https://github.com/fuzzbuck/molla</em></p>
+</body>
+</html>

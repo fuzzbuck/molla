@@ -1,0 +1,14 @@
+[default]
+http_listen = { url = "127.0.0.1", port = 8080 }
+discreet_version = true
+sled_dir = "./sled"
+
+[simple_root_page]
+enabled = true
+administrators = ["@fuzzbuck"]
+header = "molla dev server"
+description = "Howdy, this is a test server used for testing."
+contact = "https://github.com/fuzzbuck/molla"
+
+[debug]
+discreet_version = false
