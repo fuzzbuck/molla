@@ -1,14 +1,10 @@
 [default]
-http_listen = { url = "127.0.0.1", port = 8080 }
+http_listen = { url = "127.0.0.1", port = 8001 }
+protocol = { board_expire_days = 22 }
 discreet_version = true
 sled_dir = "./sled"
-
-[simple_root_page]
-enabled = true
-administrators = ["@fuzzbuck"]
-header = "molla dev server"
-description = "Howdy, this is a test server used for testing."
-contact = "https://github.com/fuzzbuck/molla"
+simple_root_page = { enabled = true, administrators = ["@fuzzbuck"], header = "molla dev server", title = "molla server", description = "Howdy, this is a test server used for testing.", contact = "github", contact_href = "https://github.com/fuzzbuck/molla"}
+denylist = { url = "https://raw.githubusercontent.com/robinsloan/spring-83/main/earth-865/denylist.txt", update_rate_ms = 10000 }
 
 [debug]
 discreet_version = false
