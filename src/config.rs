@@ -9,7 +9,9 @@ use serde::Deserialize;
 #[derive(Deserialize)]
 pub struct Config {
     pub http_listen: HttpListenConfig,
+    pub protocol: ProtocolConfig,
     pub simple_root_page: RootPageConfig,
+    pub denylist: DenylistConfig,
     pub sled_dir: String,
 }
 
@@ -20,6 +22,11 @@ pub struct HttpListenConfig {
 }
 
 #[derive(Deserialize)]
+pub struct ProtocolConfig {
+    pub board_expire_days: i64,
+}
+
+#[derive(Deserialize, Clone)]
 pub struct RootPageConfig {
     pub enabled: bool,
     pub administrators: Vec<String>,
@@ -27,6 +34,13 @@ pub struct RootPageConfig {
     pub header: String,
     pub description: String,
     pub contact: String,
+    pub contact_href: String,
+}
+
+#[derive(Deserialize)]
+pub struct DenylistConfig {
+    pub url: String,
+    pub update_rate_ms: u64,
 }
 
 pub(crate) static CONFIG: Lazy<Config> = Lazy::new(|| {
